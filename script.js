@@ -170,3 +170,254 @@ let obj4={
 };
 
 let {city}=obj.user.address; // destructing
+
+//                                 advance js oops
+
+//get and set property
+
+/* class animal {
+        constructor(){
+               this._age=12;
+        }
+        set age (val){
+            if(val <0){
+                console.error("error");
+                return;
+            }
+                this._age=val;
+                return this._age;
+        }
+        get age(){
+
+            return this._age;
+
+        }
+    }        
+}
+
+let a1= new animal();
+console.log(a1.age);
+
+*/
+function getpizza (){
+    console.log("recived order for pizza :");
+    return new Promise((resolve, reject)=>{
+        setTimeout(()=>{
+            let allfine=true;
+            if(allfine){
+                resolve("pizza is almost to be ready!");
+            }else{
+                reject("unable to prepare because of material !!!");
+            }
+        },2000);
+    });
+};
+
+async function  orderpizza(){
+    console.log("order pizza ");
+    try{
+        let recive=await getpizza();
+
+        console.log("recived successfully");
+        console.log("recive");
+    }
+    catch(error){
+        console.log(error);
+    }
+}
+
+orderpizza();
+
+function pizza() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("🍕 Ready");
+        }, 1000);
+    });
+}
+
+async function order() {
+    console.log("A");
+
+    let result = await pizza();
+
+    console.log("B");
+    console.log(result);
+
+    return "Done";
+}
+
+console.log("C");
+
+let x = order();
+
+console.log("D");
+
+x.then((value) => {
+    console.log(value);
+});
+
+console.log("E");
+
+function getPizza() {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            reject("Pizza shop closed ❌");
+        }, 1000);
+    });
+}
+
+async function order() {
+    console.log("A");
+
+    try {
+        let pizza = await getPizza();
+
+        console.log("B");
+        console.log(pizza);
+
+    } catch (error) {
+        console.log("C");
+        console.log(error);
+    }
+
+    console.log("D");
+}
+
+console.log("E");
+
+order();
+
+console.log("F");
+
+function getData() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("Data received");
+        }, 2000);
+    });
+}
+
+async function showData() {
+    console.log("A");
+
+    let data = await getData();
+
+    console.log("B");
+    console.log(data);
+}
+
+let promise = getData();
+
+console.log("C");
+
+showData();
+
+console.log("D");
+
+async function getUser() {
+    console.log("A");
+
+    let name = await Promise.resolve("Harsh");
+
+    console.log("B");
+
+    return name;
+}
+
+console.log("C");
+
+let result = getUser();
+
+console.log("D");
+
+result.then((value) => {
+    console.log("E");
+    console.log(value);
+});
+
+function getUser() {
+    return Promise.resolve("Harsh");
+}
+
+async function showUser() {
+    console.log("A");
+
+    let user = await getUser();
+
+    console.log("B");
+
+    return user;
+}
+
+console.log("C");
+
+showUser().then((name) => {
+    console.log("D");
+    console.log(name);
+});
+
+console.log("E");
+
+function stepOne() {
+    console.log("1");
+    return Promise.resolve("Done 1");
+}
+
+function stepTwo() {
+    console.log("2");
+    return Promise.resolve("Done 2");
+}
+
+async function process() {
+    console.log("3");
+
+    let a = await stepOne();
+
+    console.log(a);
+
+    stepTwo();
+
+    console.log("4");
+
+    let b = await stepTwo();
+
+    console.log(b);
+
+    console.log("5");
+}
+
+console.log("6");
+
+process();
+
+console.log("7");
+
+function getData() {
+    console.log("1");
+
+    return Promise.reject("Failed");
+}
+
+async function test() {
+    console.log("2");
+
+    try {
+        let data = await getData();
+
+        console.log("3");
+        console.log(data);
+
+    } catch (error) {
+        console.log("4");
+        console.log(error);
+    }
+
+    console.log("5");
+}
+
+console.log("6");
+
+test();
+
+console.log("7");
